@@ -6,12 +6,24 @@ import ContactList from "./ContactList";
 
 
 function App() {
+  const contacts = [
+    {
+      id: "1",
+      name: "John",
+      email: "john@telenet.be"
+  },
+  {
+      id: "2",
+      name: "Anna",
+      email: "anna@telenet.be"
+  }
+
+  ]
   return (
-    <div>
+    <div className="ui container">
       <Header />
       <AddContact />
-      {/* 
-  <ContactList /> */}
+      <ContactList contacts={contacts}/> 
     </div>
   );
 }
