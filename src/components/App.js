@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import './App.css';
 import Header from "./Header";
 import AddContact from "./AddContact";
@@ -6,23 +6,24 @@ import ContactList from "./ContactList";
 
 
 function App() {
-  const contacts = [
-    {
-      id: "1",
-      name: "John",
-      email: "john@telenet.be"
-  },
-  {
-      id: "2",
-      name: "Anna",
-      email: "anna@telenet.be"
-  }
+  const LOCAL_STORAGE_KEY="contacts";
+  const [contacts, setContacts] = useState([]);
+  const addContactHandler = (contact) =>
+  { console.log(contact);
+    setContacts([...contacts, contact]);
+  };
 
-  ]
+  useEffect(() => {
+		const retriveContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    if (retriveContacts) setContacts(retriveContacts);
+	}, []);
+
+
+  useEffect(() => {localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));}, [contacts]); // zorgt voor local storage in de browser
   return (
     <div className="ui container">
       <Header />
-      <AddContact />
+      <AddContact addContactHandler={addContactHandler}/>
       <ContactList contacts={contacts}/> 
     </div>
   );
