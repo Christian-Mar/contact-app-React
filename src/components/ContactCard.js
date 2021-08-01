@@ -7,16 +7,27 @@ const ContactCard = (props) => {
   //destructured props: ipv {contact.name} kan nu {name}
   return (
 		<div className="item">
-        <img className="ui avatar image" src={user} alt="user" />
+			<img className="ui avatar image" src={user} alt="user" />
 			<div className="content">
-      <Link to={{pathname:`/contact/${id}`, state:{contact:props.contact}}}>
-				<div className="header">{name}</div>
-				<div>{email}</div>
-        </Link>
+				<Link
+					to={{ pathname: `/contact/${id}`, state: { contact: props.contact } }}
+				>
+					<div className="header">{name}</div>
+					<div>{email}</div>
+				</Link>
 			</div>
-			<i className="trash alternate outline icon"
-      style={{ color: "red", marginTop: "7px"}}
-      onClick={() => props.clickHandler(id)}></i>
+			<i
+				className="trash alternate outline icon"
+				style={{ color: 'red', marginTop: '7px', marginLeft: '10px'}}
+				onClick={() => props.clickHandler(id)}
+			></i>
+      <Link to={{ pathname: `/edit`, state: { contact: props.contact }}}>
+			<i
+				className="edit alternate outline icon"
+				style={{ color: 'blue', marginTop: '7px' }}
+				//onClick={() => props.clickHandler(id)}
+			></i>
+      </Link>
 		</div>
 	);
 }

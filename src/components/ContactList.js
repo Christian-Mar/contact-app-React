@@ -21,7 +21,7 @@ const ContactList = props => {
 	});
 
 	return ( 
-    <div class="main">
+    <div className="main">
       <h2>Contact List
       <Link to="/add">
         <button className="ui button blue right">Add Contact</button>
